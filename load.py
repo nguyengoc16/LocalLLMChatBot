@@ -2,7 +2,7 @@ import os
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.text_splitter import Language, RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
-from langchain.document_loaders import CSVLoader, PDFMinerLoader, TextLoader, UnstructuredExcelLoader, Docx2txtLoader
+from langchain.document_loaders import PyPDFLoader, CSVLoader, PDFMinerLoader, TextLoader, UnstructuredExcelLoader, Docx2txtLoader
 from document import Document
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 
@@ -13,7 +13,7 @@ class DocumentLoader:
             ".txt": TextLoader,
             ".md": TextLoader,
             ".py": TextLoader,
-            ".pdf": PDFMinerLoader,
+            ".pdf": PyPDFLoader,
             ".csv": CSVLoader,
             ".xls": UnstructuredExcelLoader,
             ".xlsx": UnstructuredExcelLoader,
@@ -21,7 +21,6 @@ class DocumentLoader:
             ".doc": Docx2txtLoader,
     }
 
-        self.PERSIST_DIRECTORY = "/content/DB"
 
     def load_single_document(self, file_path: str) -> Document:
         # Loads a single document from a file path
