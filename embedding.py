@@ -15,16 +15,16 @@ class Embedding:
         self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         
 
-    def embed_doc(self, text_documents):
+    def load_db(self, text_documents):
         self.db = Chroma.from_documents(
                                     text_documents,
                                     self.embeddings,
                                     persist_directory=self.PERSIST_DIRECTORY,
                                     # client_settings=CHROMA_SETTINGS,
                                     )
-        self.db.persist()
-        return self.db
+        # self.db.persist()
+        
 
     def retrieve_db(self):
-        return self.db
+        return self.db.as_retriever(search_kwargs={"k":2})
 

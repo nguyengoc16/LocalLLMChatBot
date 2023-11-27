@@ -43,7 +43,7 @@ class DocumentLoader:
             # return data and file paths
             return (data_list, filepaths)
         
-    def load_documents(self,source_dir: str) -> list[Document]:
+    def load_documents(self, source_dir: str) -> list[Document]:
     # Loads all documents from the source documents directory
         all_files = os.listdir(source_dir)
         paths = []
