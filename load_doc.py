@@ -26,7 +26,7 @@ class DocumentLoader:
         # Loads a single document from a file path
         file_extension = os.path.splitext(file_path)[1]
         print("LOADING FILE:" + file_extension)
-        loader_class = DocumentLoader.DOCUMENT_MAP.get(file_extension)
+        loader_class = self.DOCUMENT_MAP.get(file_extension)
         if loader_class:
             loader = loader_class(file_path)
         else:
@@ -74,7 +74,7 @@ class DocumentLoader:
 
         return docs
     
-    def split_documents(documents: list[Document]) -> tuple[list[Document], list[Document]]:
+    def split_documents(self, documents: list[Document]) -> tuple[list[Document], list[Document]]:
     # Splits documents for correct Text Splitter
         text_docs = [doc for doc in documents]
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)  

@@ -21,9 +21,9 @@ def get_ready():
     llm, prompt, memory = model_load.call_model()
 
     return llm, prompt, memory, retriever
+llm, prompt, memory, retriever= get_ready()
 
 def load_qa(query):
-  llm, prompt, memory, retriever= get_ready()
   qa = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
