@@ -31,7 +31,9 @@ class Model:
 
         else:
             model_name = name
+        print("LOADING TOKENIZER")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        print("LOADING MODEL")
         self.model = AutoGPTQForCausalLM.from_quantized(model_name,
                                                 # revision="gptq-4bit-32g-actorder_True",
                                                 # model_basename=model_basename,
@@ -42,6 +44,7 @@ class Model:
         
     
     def __init_pipeline(self):
+        print("INITIALIZING PIPELINE")
         self.pipe = pipeline("text-generation",
                   model=self.model,
                   tokenizer= self.tokenizer,

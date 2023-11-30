@@ -25,7 +25,7 @@ class DocumentLoader:
     def load_single_document(self, file_path: str) -> Document:
         # Loads a single document from a file path
         file_extension = os.path.splitext(file_path)[1]
-        print(file_extension)
+        print("LOADING FILE:" + file_extension)
         loader_class = DocumentLoader.DOCUMENT_MAP.get(file_extension)
         if loader_class:
             loader = loader_class(file_path)
