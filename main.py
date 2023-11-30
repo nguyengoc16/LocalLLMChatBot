@@ -35,7 +35,7 @@ def load_qa(query):
   return res["result"], res["source_documents"]
 
 
-def chatbot(input, history):
+def my_bot(input, history):
     history = history or []
     s = list(sum(history, ()))
     s.append(input)
@@ -57,6 +57,6 @@ if __name__ == "__main__":
         message = gr.Textbox(placeholder="Enter your question hear")
         state = gr.State()
         submit = gr.Button("SEND")
-        submit.click(chatbot, inputs=[message, state], outputs=[chatbot, state])
+        submit.click(my_bot, inputs=[message, state], outputs=[chatbot, state])
 
     block.launch(debug = True)
