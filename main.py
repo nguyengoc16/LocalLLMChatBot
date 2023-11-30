@@ -59,4 +59,4 @@ if __name__ == "__main__":
         submit = gr.Button("SEND")
         submit.click(my_bot, inputs=[message, state], outputs=[chatbot, state])
 
-    block.launch(debug = True)
+    block.launch(debug = True, share = True)
