@@ -3,7 +3,7 @@ from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from langchain.llms import HuggingFacePipeline
 from langchain.chains import RetrievalQA
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
 class Model:
 
@@ -62,7 +62,7 @@ class Model:
         self.__init_pipeline()
         self.llm = HuggingFacePipeline(pipeline = self.pipe, model_kwargs = {'temperature':temperature})
         prompt = PromptTemplate(input_variables=["history", "context", "question"], template=self.template)
-        memory = ConversationBufferMemory(input_key="question", memory_key="history")
+        memory = ConversationBufferWindowMemory(k=3,input_key="question", memory_key="history")
 
 
         # qa = RetrievalQA.from_chain_type(
